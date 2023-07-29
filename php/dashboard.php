@@ -18,11 +18,11 @@ include('../include/header.php'); ?>
 						<div class="card-body">
 							<img src="../img/1.png" class="col-sm-3" alt="" id="icon">
 							<?php
-							$sql = "SELECT * FROM products";
+							$sql = "SELECT * FROM kopi";
 							if ($result = mysqli_query($conn, $sql)) {
 								$rowcount = mysqli_num_rows($result);
 							} ?>
-							<p class="card-text"><?php echo "<span id='supplier'> $rowcount </span>"  . "<br>Products" ?></p>
+							<p class="card-text"><?php echo "<span id='supplier'> $rowcount </span>"  . "<br>Data Kopi" ?></p>
 						</div>
 					</div>
 				</div>
@@ -39,7 +39,7 @@ include('../include/header.php'); ?>
 								$rowcounter = mysqli_num_rows($Result);
 							}
 							?>
-							<p class="card-text"><?php echo "<span id='supplier'> $rowcounter </span>"  . "<br>Suppliers" ?></p>
+							<p class="card-text"><?php echo "<span id='supplier'> $rowcounter </span>"  . "<br>Data Supplier" ?></p>
 						</div>
 					</div>
 				</div>
@@ -51,12 +51,12 @@ include('../include/header.php'); ?>
 							<img src="../img/2.png" class="col-sm-3" alt="" id="icon">
 
 							<?php
-							$Sqll = "SELECT * FROM clients";
+							$Sqll = "SELECT * FROM konsumen";
 							if ($Resultt = mysqli_query($conn, $Sqll)) {
 								$Rowcounter = mysqli_num_rows($Resultt);
 							}
 							?>
-							<p class="card-text"><?php echo "<span id='supplier'> $Rowcounter </span>"  . "<br>Clients" ?></p>
+							<p class="card-text"><?php echo "<span id='supplier'> $Rowcounter </span>"  . "<br>Data Konsumen" ?></p>
 						</div>
 					</div>
 				</div>
@@ -68,26 +68,28 @@ include('../include/header.php'); ?>
 				<div class="card-group">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title orders">Sales Orders</h5>
+							<h5 class="card-title orders">Data Barang masuk</h5>
 							<table id="recent_clientorder" class="display">
 								<thead>
 									<tr>
-										<th>Client Order No.</th>
-										<th>Client Name</th>
-										<th>Status</th>
+										<th>Id Barang Masuk</th>
+										<th>Nama Supplier</th>
+										<th>Nama Kopi </th>
+										<th>Status </th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
-									$sql = "SELECT DISTINCT ClientOrderNo,ClientName,orderStatus FROM clientorder ORDER BY ClientOrderNo DESC LIMIT 3";
+									$sql = "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier order by barangmasuk.id_barangmasuk DESC LIMIT 3";
 									$result = $conn->query($sql);
 									?>
 									<?php if ($result->num_rows > 0) : ?>
 										<?php while ($row = $result->fetch_assoc()) : ?>
 											<tr>
-												<td><?php echo $row["ClientOrderNo"]; ?></td>
-												<td><?php echo $row["ClientName"]; ?></td>
-												<td><?php echo $row["orderStatus"]; ?></td>
+												<td><?php echo $row["id_barangmasuk"]; ?></td>
+												<td><?php echo $row["nama_supplier"]; ?></td>
+												<td><?php echo $row["namakopi"]; ?></td>
+												<td><?php echo $row["status"]; ?></td>
 											</tr>
 										<?php endwhile; ?>
 									<?php endif; ?>
@@ -102,26 +104,26 @@ include('../include/header.php'); ?>
 				<div class="card-group">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title orders">Purchase Orders</h5>
+							<h5 class="card-title orders">Data Barang Keluar</h5>
 							<table id="recent_purchaseorder" class="display">
 								<thead>
-									<tr>
-										<th>Purchase Order No.</th>
-										<th>Supplier Name</th>
-										<th>Status</th>
+										<tr>
+										<th>Id Barang Keluar</th>
+										<th>Nama Konsumen</th>
+										<th>Nama Kopi </th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php
-									$SSql = "SELECT DISTINCT PurchaseorderNo,SupplierName,OrderStatus FROM purchaseorder ORDER BY PurchaseorderNo DESC LIMIT 3  ";
-									$RResult = $conn->query($SSql);
+								<?php
+									$sql = "SELECT * FROM barangkeluar JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen order by barangkeluar.id_barangkeluar DESC LIMIT 3";
+									$result = $conn->query($sql);
 									?>
-									<?php if ($RResult->num_rows > 0) : ?>
-										<?php while ($row = $RResult->fetch_assoc()) : ?>
+									<?php if ($result->num_rows > 0) : ?>
+										<?php while ($row = $result->fetch_assoc()) : ?>
 											<tr>
-												<td><?php echo $row["PurchaseorderNo"]; ?></td>
-												<td><?php echo $row["SupplierName"]; ?></td>
-												<td><?php echo $row["OrderStatus"]; ?></td>
+												<td><?php echo $row["id_barangkeluar"]; ?></td>
+												<td><?php echo $row["nama_konsumen"]; ?></td>
+												<td><?php echo $row["namakopi"]; ?></td>
 											</tr>
 										<?php endwhile; ?>
 									<?php endif; ?>

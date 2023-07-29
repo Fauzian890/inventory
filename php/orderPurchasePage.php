@@ -19,6 +19,7 @@
 					<th>Supplier</th>
 					<th>Nama Kopi</th>
 					<th>Quantity</th>
+					<th>Tanggal</th>
 					<th>Status</th>
 					<th>Action</th>
 				</tr>
@@ -35,6 +36,7 @@
 								<td><?php echo $row["nama_supplier"]; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>		
 								<td><?php echo $row["qty"]; ?></td>		
+								<td><?php echo $row["tanggal_barangmasuk"]; ?></td>	
 								<td><?php echo $row["status"]; ?></td>	
 								<td>
 

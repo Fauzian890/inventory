@@ -9,38 +9,42 @@
 	?>
 
 <body>
-	<div class="label clientOrder">List Barang Masuk
+	<div class="label clientOrder">List Barang Keluar
 		<button id="myBtn">Add</button>
-		<?php include('../include/modal_orderClient.php');?>
+		<?php include('../include/modal_barangkeluar.php');?>
 	</div>
 	
 	<table id="clientOrder_list" class="display">
 		<thead>
 			<tr>
-				<th>Client Order No.</th>
-				<th>Client Name</th>
-				<th>Orders</th>
-				<th>Status</th>
+				<th>Id</th>
+				<th>Konsumen</th>
+				<th>Nama Kopi</th>
+				<th>Quantity</th>
+				<th>Tanggal</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
-			$sql = "SELECT DISTINCT ClientOrderNo,ClientName,orderStatus FROM clientorder";
-			$result = $conn->query($sql);
-			?>
+					$sql = "SELECT * FROM barangkeluar JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
+					$result = $conn->query($sql);
+				?>
 			<?php if ($result->num_rows > 0): ?>
 				<?php while($row = $result->fetch_assoc()): ?>
-					<tr>
-						<td><?php echo $row["ClientOrderNo"]; ?></td>
-						<td><?php echo $row["ClientName"]; ?></td>	
-						<td><button class="viewbtn" id="<?php echo $row["ClientOrderNo"]; ?>">View Order</button></td>
-						<td><?php echo $row["orderStatus"]; ?></td>	
-						<td><button class="action update" 
-						data-status="<?php echo $row["orderStatus"]; ?>"
-						data-clientorderno="<?php echo $row["ClientOrderNo"]; ?>">Update Status</button>
-						<a class="action delete" onclick="return alert('Client Order Deleted');" href="../actions/orderclient_delete.php?clientorderno=<?php echo $row["ClientOrderNo"];?>">Delete</a></td>
-					</tr>
+						<tr>
+								<td><?php echo $row["id_barangkeluar"]; ?></td>
+								<td><?php echo $row["nama_konsumen"]; ?></td>
+								<td><?php echo $row["namakopi"]; ?></td>		
+								<td><?php echo $row["qty"]; ?></td>		
+								<td><?php echo $row["tanggal_barangkeluar"]; ?></td>		
+								<td>
+
+									<a onclick="return alert('Barang keluar berhasil dihapus');" href="../actions/barangkeluar_delete.php?id_barangkeluar=<?php echo $row["id_barangkeluar"]; ?>">
+										<button class="action delete" href="">Delete</button>
+									</a>
+								</td>
+							</tr>
 
 				<?php endwhile; ?>
 			<?php endif; ?>
