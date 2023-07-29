@@ -1,10 +1,12 @@
 <html>
+	<head>
+		<title>List Barang Masuk </title>
+	</head>
 	<?php 
 		include('../include/header.php');
 		include('../include/navbar.php');
 		include('../database/db.php');
 	?>
-
 <body>
 	<div class="label clientOrder">
 		List Barang Masuk
@@ -12,6 +14,13 @@
 		<!-- The Modal -->
 		<?php include('../include/modal_BarangMasuk.php');?>
 	</div>
+	<form class="label" style="margin-bottom:-5px;font-size: 16px;text-align:right;">
+		Filter Tanggal: 	
+		<input type="date" name="min" style="margin-left: 8px;" /> - 
+		<input type="date" name="max" />
+		<button class="btn btn-primary btn-sm">Terapkan</button>
+		<a href="/inventory/php/orderPurchasePage.php" class="btn btn-secondary btn-sm">Reset</a>
+	</form>
 		<table id="purchaseOrder_list" class="display">
 			<thead>
 				<tr>
@@ -26,7 +35,13 @@
 			</thead>
 			<tbody>
 				<?php 
-					$sql = "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier";
+					$sql = "";
+					if(isset($_GET['min']) && isset($_GET['max'])) {
+						$sql .= "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier WHERE tanggal_barangmasuk BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ."'";
+					} else {
+						$sql .= "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier";
+					}
+					
 					$result = $conn->query($sql);
 				?>
 					<?php if ($result->num_rows > 0): ?>
@@ -58,7 +73,12 @@
 </body>
 <script>
 			$(document).ready( function () {
-					$('#purchaseOrder_list').DataTable();
+					$('#purchaseOrder_list').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+		});
 			});
 	</script>
 	<script src="../include/modalscript.js"></script>

@@ -1,4 +1,7 @@
 <html>
+	<head>
+		<title>List Barang Keluar </title>
+	</head>
 	<?php 
 		include('../include/header.php');
 		include('../include/navbar.php');	
@@ -54,6 +57,17 @@
 		</tbody>
 	</table>
 </body>
+
+<script>
+			$(document).ready( function () {
+					$('#clientOrder_list').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+		});
+			});
+	</script>
 
 <?php include('../include/modalscript_orderClient.php');?>
 </html>
