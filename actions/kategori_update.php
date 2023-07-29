@@ -1,7 +1,7 @@
 <?php include('../database/db.php');
 
 //$idkategori = $_GET['kat'];
-$nama = $_POST['namakategori'];
+$nama = $_POST['nama_kategori'];
 $id = $_POST['id_kategori'];;
 
 

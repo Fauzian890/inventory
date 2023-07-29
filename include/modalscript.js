@@ -1,5 +1,5 @@
 
-$(".update").click(function(){
+$(".update").click(function () {
   $("#updateModal").show();
   var desc = $(this).data("desc");
   var qty = $(this).data("qty");
@@ -7,7 +7,8 @@ $(".update").click(function(){
   var unitprice = $(this).data("uprice");
   var expiry = $(this).data("expiry");
   var prodId = $(this).data("id");
-  var id_kategori = $(this).data("id_kategori");
+  var id_kategori = $(this).data("id-kategori");
+  var nama_kategori = $(this).data("nama-kategori");
 
   $("#proddesc").val(desc);
   $("#prodqty").val(qty);
@@ -16,16 +17,17 @@ $(".update").click(function(){
   $("#expiry").val(expiry);
   $("#ProdId").val(prodId);
   $("#id_kategori").val(id_kategori);
+  $("#nama_kategori").val(nama_kategori);
 });
 
-$(".close").click(function(){
+$(".close").click(function () {
   $("#updateModal").hide();
 });
 
-$("#myBtn").click(function(){
+$("#myBtn").click(function () {
   $("#myModal").show();
 });
 
-$(".close").click(function(){
+$(".close").click(function () {
   $("#myModal").hide();
 });

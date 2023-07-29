@@ -27,8 +27,8 @@
 							<tr>
 								<td><?php echo $row["nama_kategori"]; ?></td>	
 								<td><button class="action update" 
-								data-id="<?php echo $row["id_kategori"];?>"
-								data-namakategori="<?php echo $row["nama_kategori"]; ?>"
+								data-id-kategori="<?php echo $row["id_kategori"];?>"
+								data-nama-kategori="<?php echo $row["nama_kategori"]; ?>"
 								>Update</button>
 								<a onclick="return alert('Product Deleted');" href="../actions/kategori_delete.php?kat=<?php echo $row["id_kategori"];?>" class="action delete">Delete</td>	
 							</tr>

@@ -28,10 +28,10 @@
 			</div>
 
 			<div class="form-group">
-				<input type="text" class="form-control" name="namakategori" placeholder="Namakategori">
+				<input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Namakategori">
 			</div>
 			
-			<!-- Product ID --><input name="id_kategori" id="id_kategori" type="hidden" value="<?php echo $data ?>">
+			<!-- Product ID --><input name="id_kategori" id="id_kategori" type="hidden">
 			<div class="form-group">
 				<button type="submit" name="submit" class="btn btn-primary">Update Product</button>
 			</div>
