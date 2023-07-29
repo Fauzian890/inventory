@@ -6,10 +6,11 @@ include('../include/header.php'); ?>
 <?php include('../database/db.php'); ?>
 <link href="../css/dashboard.css" rel="stylesheet" type="text/css" />
 
-<body>
+<body style="background:url('https://images.unsplash.com/photo-1524350876685-274059332603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');background-repeat:no-repeat;
+background-position: center center;background-size: cover;"">
 	<div class="container">
-		<div class="row dashboard">
-			<div class="col-sm-12">DASHBOARD</div>
+		<div class="row dashboard" style="background: none;">
+			<div class="col-sm-12 text-white font-weight-bold">DASHBOARD</div>
 		</div>
 		<div class="row analytics">
 			<div class="col-sm-4">

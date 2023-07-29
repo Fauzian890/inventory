@@ -4,7 +4,8 @@ include('../include/header.php'); ?>
 <?php include('../include/navbar.php'); ?>
 <link href="../css/viewPage.css" rel="stylesheet" type="text/css" />
 
-<body>
+<body style="background:url('https://images.unsplash.com/photo-1524350876685-274059332603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');background-repeat:no-repeat;
+background-position: center center;background-size: cover;">
 	<div class="card-group">
 			
 		  <div class="card">

@@ -3,7 +3,8 @@ body{
 	overflow: hidden;
 }
 .container{
-	margin-left: 18%;
+	margin-left: 260px;
+	max-width: 80vw;
 }
 .dashboard{
 	padding-top: 2%;
