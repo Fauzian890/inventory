@@ -9,6 +9,13 @@ $(".update").click(function () {
   var id_kategori = $(this).data("id-kategori");
   var nama_kategori = $(this).data("nama-kategori");
 
+
+  var UserID = $(this).data("userid");
+  var UserName = $(this).data("username");
+  var UserPassword = $(this).data("userpassword");
+
+  console.log(UserName, UserID, UserPassword)
+
   $("#id_kopi").val(id_kopi);
   $("#namakopi").val(namakopi);
   $("#kategori").val(id_kategori);
@@ -17,6 +24,9 @@ $(".update").click(function () {
   $("#harga").val(harga);
   $("#id_kategori").val(id_kategori);
   $("#nama_kategori").val(nama_kategori);
+  $("#userID").val(UserID);
+  $("#userName").val(UserName);
+  $("#userPassword").val(UserPassword);
 });
 
 $(".close").click(function () {

@@ -24,6 +24,12 @@
 				<a href="orderPage.php" id="label">
 					<i class="fi fi-rr-shopping-cart"></i>Order</a>
 			</li>
+			<li class="<?php if ($page == 'kelolaAdmin') {
+							echo 'active';
+						} ?>">
+				<a href="kelolaAdmin.php" id="label">
+					<i class="fi fi-rr-users"></i>Kelola Admin</a>
+			</li>
 			<li class="<?php if ($page == 'settingPage') {
 							echo 'active';
 						} ?>">
