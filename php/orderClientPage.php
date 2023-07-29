@@ -40,7 +40,7 @@
 								<td><?php echo $row["tanggal_barangkeluar"]; ?></td>		
 								<td>
 
-									<a onclick="return alert('Barang keluar berhasil dihapus');" href="../actions/barangkeluar_delete.php?id_barangkeluar=<?php echo $row["id_barangkeluar"]; ?>">
+									<a onclick="return alert('Barang keluar berhasil dihapus');" href="../actions/barangkeluar_delete.php?id_barangkeluar=<?php echo $row["id_barangkeluar"]; ?>&qty=<?php echo $row["qty"]; ?>&id_kopi=<?php echo $row["id_kopi"]; ?>">
 										<button class="action delete" href="">Delete</button>
 									</a>
 								</td>

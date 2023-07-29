@@ -29,7 +29,7 @@
 				</select>
 				
 				<div class="form-group">
-				<input type="number" id='qty' class="form-control" name="qty" placeholder="Quantity">
+				<input type="number" id='qty' class="form-control" name="qty" min="0" placeholder="Quantity">
 			</div>
 			</div>
 			
