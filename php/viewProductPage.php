@@ -4,11 +4,11 @@
 	<?php include('../database/db.php');?> 
 	<body>
 		<div class="label productList">Data Kopi
-			<button id="myBtn">Add</button>
+			<button id="myBtn" style="width:100px;">+ Tambah</button>
 				<!-- The Modal -->
 				<?php include('../include/modal_Product.php');?>
 		</div>
-		<table id="product_list" class="display">
+		<table id="product_list" class="dataTables_wrapper no-footer">
 			<thead>
 				<tr>
 					<th>NO</th>
@@ -22,7 +22,7 @@
 			</thead>
 				<tbody>
 					<?php
-						$sql = "SELECT * FROM kopi"; //get all products
+						$sql = "SELECT * FROM kopi JOIN kategori"; //get all products
 						$result = $conn->query($sql);
 
 						$nomor = '1';
@@ -36,16 +36,19 @@
 							<tr>
 								<td><?php echo $nomor++; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>
-								<td><?php echo $row["deksripsi"]; ?></td>	
+								<td><?php echo $row["nama_kategori"]; ?></td>
+								<td><?php echo $row["deskripsi"]; ?></td>	
+								<td><?php echo number_format($row["harga"]); ?></td>		
 								<td><?php echo $row["stok"]; ?></td>
-								<td><?php echo number_format($row["harga"], 2); ?></td>		
 								<td><button class="action update" 
-								data-id="<?php echo $row["namakopi"]; ?>"
-								data-desc="<?php echo $row["deskripsi"]; ?>"
-								data-unit="<?php echo $row["stok"]; ?>"
-								data-uprice="<?php echo $row["harga"]; ?>"
+								data-id-kopi="<?php echo $row["id_kopi"]; ?>"
+								data-namakopi="<?php echo $row["namakopi"]; ?>"
+								data-id-kategori="<?php echo $row["id_kategori"]; ?>"
+								data-deskripsi="<?php echo $row["deskripsi"]; ?>"
+								data-stok="<?php echo $row["stok"]; ?>"
+								data-harga="<?php echo $row["harga"]; ?>"
 								>Update</button>
-								<a onclick="return alert('Product Deleted');" href="../actions/product_delete.php?pid=<?php echo $row["ProdId"];?>" class="action delete">Delete</td>	
+								<a onclick="return alert('Product Deleted');" href="../actions/product_delete.php?id_kopi=<?php echo $row["id_kopi"];?>" class="action delete">Delete</td>	
 							</tr>
 						<?php endwhile; ?>
 					<?php endif; ?>

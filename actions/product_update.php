@@ -4,9 +4,11 @@
     $deskripsi = $_POST['deskripsi'];
     $stok = $_POST['stok'];
     $harga = $_POST['harga'];
+    $id_kopi = $_POST['id_kopi'];
+    $id_kategori = $_POST['kategori'];
 
 
-$sql = "UPDATE products SET namakopi='$namakopi', deskripsi='$deskripsi', stok='$stok', harga='$harga' WHERE ProdId=$prodid";
+$sql = "UPDATE kopi SET namakopi='$namakopi', deskripsi='$deskripsi', stok='$stok', harga='$harga', id_kategori='$id_kategori' WHERE id_kopi=$id_kopi";
 
 if ($conn->query($sql) === TRUE) {
     header('Location: ../php/viewProductPage.php');

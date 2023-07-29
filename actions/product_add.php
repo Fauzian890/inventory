@@ -5,9 +5,10 @@ if(isset($_POST{'submit'})){
     $deskripsi = $_POST['deskripsi'];
     $stok = $_POST['stok'];
     $harga = $_POST['harga'];
+    $kategori = $_POST['kategori'];
 
-    $sql = "INSERT INTO kopi (namakopi, deskripsi, stok, harga) 
-    VALUES ('$namakopi', '$deskripsi', '$stok', '$harga')";
+    $sql = "INSERT INTO kopi (namakopi, deskripsi, stok, harga, id_kategori) 
+    VALUES ('$namakopi', '$deskripsi', '$stok', '$harga', '$kategori')";
     $result = mysqli_query($conn,$sql); 
 
     if($result){
