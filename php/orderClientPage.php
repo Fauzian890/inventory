@@ -9,7 +9,7 @@
 	?>
 
 <body>
-	<div class="label clientOrder">List of Client Orders
+	<div class="label clientOrder">List Barang Masuk
 		<button id="myBtn">Add</button>
 		<?php include('../include/modal_orderClient.php');?>
 	</div>
