@@ -1,3 +1,10 @@
+<?php 
+	session_start();
+	if($_SESSION["role"] != 'pemilik'){
+		header("location: ../php/dashboard.php");
+	}
+?>
+
 <html>
 	<?php $page = 'kelolaAdmin'; include('../include/header.php');?>
 	<?php include('../include/navbar.php');?>

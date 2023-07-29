@@ -1,5 +1,6 @@
 <html>
 	<?php 
+    $page = 'validasiBarangMasuk';
 		include('../include/header.php');
 		include('../include/navbar.php');
 		include('../database/db.php');
@@ -39,12 +40,14 @@
 								<td><?php echo $row["tanggal_barangmasuk"]; ?></td>	
 								<td><?php echo $row["status"]; ?></td>	
 								<td>
-									<?php if ($row["status"] != 'DISETUJUI') {?>
-                                    <a onclick="return alert('Barang masuk berhasil dihapus');" href="../actions/barangmasuk_delete.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>">
-										<button class="action delete" href="">Delete</button>
+                                    <?php if ($row["status"] == 'DIPROSES') {?>
+                                    <a onclick="return alert('Barang masuk disetujui');" href="../actions/barangmasuk_setuju.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>">
+										<button class="btn btn-success" href="">Setuju</button>
+									</a>
+									<a onclick="return alert('Barang masuk ditolak');" href="../actions/barangmasuk_tolak.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>">
+										<button class="btn btn-danger" href="">Tolak</button>
 									</a>
                                     <?php } ?>
-									
 								</td>
 							</tr>
 		

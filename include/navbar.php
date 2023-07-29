@@ -12,6 +12,7 @@
 				<a href="dashboard.php" id="label">
 					<i class="fi fi-rr-apps"></i>Dashboard</a>
 			</li>
+			<?php if ($_SESSION['role'] == 'admin') {?>
 			<li class="<?php if ($page == 'viewPage') {
 							echo 'active';
 						} ?>">
@@ -24,12 +25,22 @@
 				<a href="orderPage.php" id="label">
 					<i class="fi fi-rr-shopping-cart"></i>Order</a>
 			</li>
+			<?php } ?>
+			
+			<?php if ($_SESSION['role'] == 'pemilik') {?>
+				<li class="<?php if ($page == 'validasiBarangMasuk') {
+							echo 'active';
+						} ?>">
+				<a href="validasiBarangMasuk.php" id="label">
+					<i class="fi fi-rr-box"></i>Barang Masuk</a>
+			</li>
 			<li class="<?php if ($page == 'kelolaAdmin') {
 							echo 'active';
 						} ?>">
 				<a href="kelolaAdmin.php" id="label">
 					<i class="fi fi-rr-users"></i>Kelola Admin</a>
 			</li>
+			<?php } ?>
 			<li class="<?php if ($page == 'settingPage') {
 							echo 'active';
 						} ?>">

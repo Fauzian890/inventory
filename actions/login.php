@@ -12,11 +12,13 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
    $unamefromdb =  $row["UserName"];
    $pwordfromdb =  $row["UserPassword"];
+   $role = $row['role'];
 
    if($unamefromdb == $uname){
       if($pwordfromdb == $pword){
         session_start();
         $_SESSION["user"] = $unamefromdb;
+        $_SESSION["role"] = $role;
         header('Location: ../php/dashboard.php');
       }
       else{
