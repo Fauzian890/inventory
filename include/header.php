@@ -28,4 +28,5 @@
 	<link rel='stylesheet' href='https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css'>
 	<title>WARGONDES</title>
 	<link rel="icon" type="image/x-icon" href="../img/logo.png">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>

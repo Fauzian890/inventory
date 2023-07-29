@@ -49,8 +49,42 @@
 			</li>
 			<li>
 				<a id="label" onclick="return confirm('You are about to Log out, click YES to proceed');" href="../actions/logout.php">
-					<i class="fi fi-sr-sign-out"></i>Log out</a>
+					<i class="bi bi-box-arrow-in-left" style="margin-right:6px;font-size: 28px;"></i>Log out</a>
 			</li>
 		</ul>
+		<div class="user">
+			<i class="bi bi-person-circle"></i>
+			<div>
+				
+			<div class="username"><?php echo $_SESSION["user"] ?></div>
+			<div class="role"><?php echo $_SESSION["role"] ?></div>
+			</div>
+		</div>
 	</nav>
 </div>
+
+<style>
+	.user {
+		color: black;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		bottom: 32px;
+	}
+
+	.user i {
+		font-size: 40px;
+		margin-right: 16px;
+	}
+
+	.user .username {
+		font-weight: bold;
+	}
+
+	.user .role {
+		font-size: 14px;
+		margin-top: -2px;
+	}
+</style>
