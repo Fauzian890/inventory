@@ -1,16 +1,16 @@
 <?php include('../database/db.php');
 
 if(isset($_POST{'submit'})){
-    $clientname = $_POST['clientname'];
-    $clientaddress = $_POST['clientaddress'];
+    $nama_konsumen = $_POST['nama_konsumen'];
+    $alamat_konsumen = $_POST['alamat_konsumen'];
    
 
-    $sql = "INSERT INTO `clients` (ClientName, ClientAddress) 
-    VALUES ('$clientname','$clientaddress')";
+    $sql = "INSERT INTO konsumen (nama_konsumen, alamat_konsumen) 
+    VALUES ('$nama_konsumen','$alamat_konsumen')";
     $result = mysqli_query($conn,$sql); 
 
     if($result){
-        header('Location: ../php/viewClientPage.php');
+        header('Location: ../php/viewKonsumenPage.php');
     }
     else{
         die("Connection failed: " . $conn->connect_error);

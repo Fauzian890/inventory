@@ -25,7 +25,7 @@ include('../include/header.php'); ?>
 			  <div class="card-body">
 				  <h5 class="card-title">Konsumen</h5>
 					<img src="../img/konsumen.jpg" class="card-img-top" alt="..." style="width: 200px ;height: 190px;">
-					<a href="viewClientPage.php"><button class="buttons-view">View</button></a>
+					<a href="viewKonsumenPage.php"><button class="buttons-view">View</button></a>
 			  </div>
 		  </div>
 			

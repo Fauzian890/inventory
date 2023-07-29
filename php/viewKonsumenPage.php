@@ -4,7 +4,7 @@
 	<?php include('../database/db.php');?> 
 	<body>
 		<div class="label clientList">Data Konsumen
-			<button id="myBtn">Add</button>
+			<button id="myBtn" style="width:100px;">+ Tambah</button>
 			<!-- The Modal -->
 				<?php include('../include/modal_Client.php');?>
 		</div>
@@ -19,17 +19,17 @@
 			</thead>
 				<tbody>
 					<?php
-						$sql = "SELECT * FROM clients"; //get all products
+						$sql = "SELECT * FROM konsumen"; //get all products
 						$result = $conn->query($sql);
 					?>
 
 					<?php if ($result->num_rows > 0): ?>
 						<?php while($row = $result->fetch_assoc()): ?>
 							<tr>
-								<td><?php echo $row["ClientId"]; ?></td>
-								<td><?php echo $row["ClientName"]; ?></td>	
-								<td><?php echo $row["ClientAddress"]; ?></td>
-								<td><a onclick="return alert('Client Deleted');" href="../actions/client_delete.php?cid=<?php echo $row["ClientId"];?>" class="action delete">Delete</td>	
+								<td><?php echo $row["id_konsumen"]; ?></td>
+								<td><?php echo $row["nama_konsumen"]; ?></td>	
+								<td><?php echo $row["alamat_konsumen"]; ?></td>
+								<td><a onclick="return alert('Konsumen berhasil dihapus');" href="../actions/client_delete.php?id_konsumen=<?php echo $row["id_konsumen"];?>" class="action delete">Delete</td>	
 							</tr>
 						<?php endwhile; ?>
 					<?php endif; ?>
