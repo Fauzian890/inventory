@@ -5,7 +5,7 @@
 	<link href="../css/ViewOrder.css" rel="stylesheet" type="text/css" />
 	<body>
 		<div class="label SupplierList">Data Supplier
-			<button id="myBtn">Add</button>
+			<button id="myBtn" style="width:100px;">+ Tambah</button>
 				<!-- The Modal -->
 				<?php include('../include/modal_Supplier.php'); ?>
 		</div>
@@ -28,11 +28,11 @@
 					<?php if ($result->num_rows > 0): ?>
 						<?php while($row = $result->fetch_assoc()): ?>
 							<tr>
-								<td><?php echo $row["SupId"]; ?></td>
-								<td><?php echo $row["SupName"]; ?></td>	
-								<td><?php echo $row["SupAddress"]; ?></td>
-								<td><?php echo $row["nohp"]; ?></td>	
-								<td><a onclick="return alert('Supplier Deleted');" href="../actions/supplier_delete.php?sid=<?php echo $row["SupId"];?>" class="action delete">Delete</td>	
+								<td><?php echo $row["id_supplier"]; ?></td>
+								<td><?php echo $row["nama_supplier"]; ?></td>	
+								<td><?php echo $row["alamat_supplier"]; ?></td>
+								<td><?php echo $row["no_hp"]; ?></td>	
+								<td><a onclick="return alert('Supplier Deleted');" href="../actions/supplier_delete.php?id_supplier=<?php echo $row["id_supplier"];?>" class="action delete">Delete</td>	
 							</tr>
 						<?php endwhile; ?>
 					<?php endif; ?>

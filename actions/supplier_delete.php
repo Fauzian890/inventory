@@ -1,9 +1,9 @@
 <?php 
 include("../database/db.php");
 
-$sid = $_GET['sid'];
+$id_supplier = $_GET['id_supplier'];
 
-$sql = "DELETE FROM supplier WHERE SupId=$sid" ;
+$sql = "DELETE FROM supplier WHERE id_supplier=$id_supplier" ;
 
 if ($conn->query($sql) === TRUE) {
   header('Location: ../php/viewSupplierPage.php');
