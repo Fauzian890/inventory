@@ -1,12 +1,13 @@
-<?php 
-	if($_SESSION["role"] != 'pemilik'){
-		header("location: ../php/dashboard.php");
-	}
-?>
+
 
 <html>
 	<?php $page = 'kelolaAdmin'; include('../include/header.php');?>
 	<?php include('../include/navbar.php');?>
+	<?php 
+	if($_SESSION["role"] != 'pemilik'){
+		header("location: ../php/dashboard.php");
+	}
+?>
 	<?php include('../database/db.php');?> 
 	<body>
 		<div class="label productList">Data Admin
