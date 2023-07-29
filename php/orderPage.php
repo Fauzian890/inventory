@@ -5,6 +5,13 @@
 	<body>
 			<div class="card-group">
 				
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Barang Masuk</h5>
+						  <img src="../img/client.png" class="card-img-top" alt="...">
+						  <a href="orderPurchasePage.php"><button class="buttons-view">View</button></a>
+					</div>
+				</div>
 			  <div class="card">
 				  <div class="card-body">
 					  <h5 class="card-title">Barang Keluar</h5>
@@ -13,13 +20,6 @@
 				  </div>
 			  </div>
 				
-			  <div class="card">
-				  <div class="card-body">
-					  <h5 class="card-title">Barang Masuk</h5>
-						<img src="../img/client.png" class="card-img-top" alt="...">
-						<a href="orderPurchasePage.php"><button class="buttons-view">View</button></a>
-				  </div>
-			  </div>
 		</div>
 	</body>
 </html>
