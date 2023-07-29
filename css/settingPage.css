@@ -1,0 +1,81 @@
+body{
+	background-color: #ededed;
+}
+
+.container{
+
+	margin-left: 20%;
+	display: inline;
+}
+.card{
+	background: white;
+	margin-left: 25%;
+	margin-right: 5%;
+}
+
+.row.two{
+	height: 50px;
+
+}
+.row.three{
+	height: 50px;
+}
+.card-header{
+	height: 70px;
+	font-size: 1.5rem;
+	padding-top: 20px;
+	background: white;
+}
+.fi.setting{
+	font-size: 20px;
+	color: green;
+	margin-left: 10px;
+}
+.leftcol{
+	margin-left: 20%;
+	background: white;
+	margin-top: 5%;
+	border-right: 1px solid green;
+}
+.row{
+	margin-left: 23%;
+	background: white;
+	height: 400px;
+	margin-right: 7%;
+	font-family:'Arya', sans-serif;
+}
+#settinglogo{
+	margin-top: 5%;
+	width: 300PX;
+	
+}
+.rightcol{
+	margin-left: 17%;
+}
+#settinglabel{
+	margin-top: 20%;
+	margin-left: 15%;
+}
+.usernamepass{
+	margin-top: 10%;
+	font-size: 20px;
+}
+.username{
+	margin-bottom: 5%;
+}
+#username{
+	color: gray;
+	border-bottom: 1px solid green;
+	padding-left: 10px;
+	padding-right: 135px;
+	margin-bottom: 10px;
+}
+#change{
+	color: gray;
+	border-bottom: 1px solid green;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+#changebtn{
+	margin: 10px 0px;
+}
