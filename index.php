@@ -3,7 +3,8 @@
 
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 
-<body>
+<body style="background:url('img/bg.jpg');background-repeat:no-repeat;
+background-position: center center;background-size: cover;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2">

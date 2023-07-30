@@ -59,7 +59,7 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-  background: #ffffff;
+  background: #ada177;
   color: #fff;
   transition: all 0.3s;
 }
@@ -95,7 +95,7 @@ a, a:hover, a:focus {
 }
 #sidebar ul li a:hover {
     color: #ffffff;
-    background: #85d89d;
+    background: #5e532f;
 }
 
 ul ul a {
@@ -124,7 +124,7 @@ ul ul a {
   margin-right: 10px;
 }
 .active{
-  background: #57B471;
+  background: #241f0f;
 }
 .active > a, .active > li {
    color: white !important;

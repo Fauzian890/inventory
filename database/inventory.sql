@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2023 at 06:54 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jul 29, 2023 at 01:34 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `barangkeluar` (
   `id_barangkeluar` int(11) NOT NULL,
   `id_kopi` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
-  `tanggal_barangkeluar` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `qty` int(11) NOT NULL,
+  `tanggal_barangkeluar` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barangkeluar`
+--
+
+INSERT INTO `barangkeluar` (`id_barangkeluar`, `id_kopi`, `id_konsumen`, `qty`, `tanggal_barangkeluar`) VALUES
+(15, 11, 2, 20, '2023-07-29 18:19:34');
 
 -- --------------------------------------------------------
 
@@ -43,12 +50,21 @@ CREATE TABLE `barangkeluar` (
 
 CREATE TABLE `barangmasuk` (
   `id_barangmasuk` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
   `id_kopi` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
-  `tanggal_barangmasuk` date NOT NULL,
-  `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tanggal_barangmasuk` datetime NOT NULL DEFAULT current_timestamp(),
+  `qty` int(11) NOT NULL,
+  `status` enum('DIPROSES','DISETUJUI','DITOLAK','') NOT NULL DEFAULT 'DIPROSES'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barangmasuk`
+--
+
+INSERT INTO `barangmasuk` (`id_barangmasuk`, `id_kopi`, `id_supplier`, `tanggal_barangmasuk`, `qty`, `status`) VALUES
+(4, 11, 2, '2023-07-29 00:00:00', 23, 'DISETUJUI'),
+(5, 11, 2, '2023-07-29 16:04:56', 123, 'DISETUJUI'),
+(6, 11, 2, '2023-07-29 16:08:25', 12, 'DISETUJUI');
 
 -- --------------------------------------------------------
 
@@ -65,7 +81,7 @@ CREATE TABLE `clientorder` (
   `ItemQty` int(10) NOT NULL,
   `ItemPrice` float NOT NULL,
   `orderStatus` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -77,7 +93,7 @@ CREATE TABLE `clients` (
   `ClientId` int(10) NOT NULL,
   `ClientName` varchar(50) NOT NULL,
   `ClientAddress` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -88,14 +104,16 @@ CREATE TABLE `clients` (
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_kategori` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
-(3, 'bubuk');
+(4, 'Faa'),
+(5, 'Huhu'),
+(6, 'Haha');
 
 -- --------------------------------------------------------
 
@@ -107,7 +125,14 @@ CREATE TABLE `konsumen` (
   `id_konsumen` int(11) NOT NULL,
   `nama_konsumen` varchar(25) NOT NULL,
   `alamat_konsumen` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `konsumen`
+--
+
+INSERT INTO `konsumen` (`id_konsumen`, `nama_konsumen`, `alamat_konsumen`) VALUES
+(2, 'Konsumen 1', 'Gaadasd');
 
 -- --------------------------------------------------------
 
@@ -121,8 +146,15 @@ CREATE TABLE `kopi` (
   `namakopi` varchar(25) NOT NULL,
   `deskripsi` varchar(25) NOT NULL,
   `stok` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `harga` bigint(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kopi`
+--
+
+INSERT INTO `kopi` (`id_kopi`, `id_kategori`, `namakopi`, `deskripsi`, `stok`, `harga`) VALUES
+(11, 4, 'Kopi', 'asdsa', 2, 75000);
 
 -- --------------------------------------------------------
 
@@ -138,7 +170,7 @@ CREATE TABLE `products` (
   `ProdQuantity` int(10) NOT NULL,
   `ProdUnit` varchar(50) NOT NULL,
   `ProdUnitPrice` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -149,8 +181,7 @@ INSERT INTO `products` (`ProdId`, `id_kategori`, `Namakopi`, `ProdDescription`, 
 (4, 0, '', 'asd', 2, '32', 13),
 (5, 0, '', 'sad', 2, '4', 12),
 (6, 0, '', 'kopi asu', 10, '90', 100),
-(7, 0, '', 'kopi asu', 78, '8', 30000),
-(8, 0, 'asu', 'kopi asu', 2, '3', 20000);
+(7, 0, '', 'kopi asu', 78, '8', 30000);
 
 -- --------------------------------------------------------
 
@@ -167,7 +198,7 @@ CREATE TABLE `purchaseorder` (
   `OrderQty` int(10) NOT NULL,
   `OrderPrice` float NOT NULL,
   `OrderStatus` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -180,7 +211,14 @@ CREATE TABLE `supplier` (
   `nama_supplier` varchar(25) NOT NULL,
   `alamat_supplier` varchar(25) NOT NULL,
   `no_hp` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `no_hp`) VALUES
+(2, 'Haha', 'Aewas', 182312);
 
 -- --------------------------------------------------------
 
@@ -193,7 +231,7 @@ CREATE TABLE `suppliers` (
   `SupName` varchar(50) NOT NULL,
   `SupAddress` varchar(50) NOT NULL,
   `nohp` int(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `suppliers`
@@ -205,33 +243,24 @@ INSERT INTO `suppliers` (`SupId`, `SupName`, `SupAddress`, `nohp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `UserID` int(10) NOT NULL,
   `UserName` varchar(50) NOT NULL,
-  `UserPassword` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `UserPassword` varchar(50) NOT NULL,
+  `role` enum('admin','pemilik','','') NOT NULL DEFAULT 'admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`) VALUES
-(1, 'admin', 'admin');
+INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`, `role`) VALUES
+(1, 'admin', 'admin', 'admin'),
+(2, 'admin2', 'admin222', 'admin'),
+(3, 'emon', '1234', 'pemilik');
 
 --
 -- Indexes for dumped tables
@@ -243,7 +272,6 @@ INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`) VALUES
 ALTER TABLE `barangkeluar`
   ADD PRIMARY KEY (`id_barangkeluar`),
   ADD KEY `id_kopi` (`id_kopi`),
-  ADD KEY `id_kategori` (`id_kategori`),
   ADD KEY `id_konsumen` (`id_konsumen`);
 
 --
@@ -251,7 +279,6 @@ ALTER TABLE `barangkeluar`
 --
 ALTER TABLE `barangmasuk`
   ADD PRIMARY KEY (`id_barangmasuk`),
-  ADD KEY `id_kategori` (`id_kategori`),
   ADD KEY `id_kopi` (`id_kopi`),
   ADD KEY `id_supplier` (`id_supplier`);
 
@@ -312,12 +339,6 @@ ALTER TABLE `suppliers`
   ADD PRIMARY KEY (`SupId`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -331,13 +352,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangkeluar`
 --
 ALTER TABLE `barangkeluar`
-  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `barangmasuk`
 --
 ALTER TABLE `barangmasuk`
-  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `clientorder`
@@ -349,25 +370,25 @@ ALTER TABLE `clientorder`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ClientId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ClientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kopi`
 --
 ALTER TABLE `kopi`
-  MODIFY `id_kopi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kopi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -385,7 +406,7 @@ ALTER TABLE `purchaseorder`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -394,16 +415,10 @@ ALTER TABLE `suppliers`
   MODIFY `SupId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -413,7 +428,6 @@ ALTER TABLE `users`
 -- Constraints for table `barangkeluar`
 --
 ALTER TABLE `barangkeluar`
-  ADD CONSTRAINT `bk_fk1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
   ADD CONSTRAINT `bk_fk2` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`),
   ADD CONSTRAINT `bk_fk3` FOREIGN KEY (`id_kopi`) REFERENCES `kopi` (`id_kopi`);
 
@@ -421,7 +435,6 @@ ALTER TABLE `barangkeluar`
 -- Constraints for table `barangmasuk`
 --
 ALTER TABLE `barangmasuk`
-  ADD CONSTRAINT `bm_fk1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
   ADD CONSTRAINT `bm_fk2` FOREIGN KEY (`id_kopi`) REFERENCES `kopi` (`id_kopi`),
   ADD CONSTRAINT `bm_fk3` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`);
 

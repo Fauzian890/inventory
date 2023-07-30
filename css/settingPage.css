@@ -1,5 +1,5 @@
 body{
-	background-color: #ededed;
+	background-color: #5e532f;
 }
 
 .container{
@@ -8,7 +8,7 @@ body{
 	display: inline;
 }
 .card{
-	background: white;
+	background: #5e532f;
 	margin-left: 25%;
 	margin-right: 5%;
 }
@@ -24,22 +24,22 @@ body{
 	height: 70px;
 	font-size: 1.5rem;
 	padding-top: 20px;
-	background: white;
+	background: #5e532f;
 }
 .fi.setting{
 	font-size: 20px;
-	color: green;
+	color: #6d6a61;
 	margin-left: 10px;
 }
 .leftcol{
 	margin-left: 20%;
-	background: white;
+	background: #e6e2d6;
 	margin-top: 5%;
-	border-right: 1px solid green;
+	border-right: 1px solid #e6e2d6;
 }
 .row{
 	margin-left: 23%;
-	background: white;
+	background: #e2ddcf;
 	height: 400px;
 	margin-right: 7%;
 	font-family:'Arya', sans-serif;

@@ -11,9 +11,10 @@
 		$res = $conn->query($s);	
 	?>
 
-<body>
+<body style="background:url('https://img.freepik.com/free-photo/right-corner-coffee-beans-with-copy-space_23-2148255026.jpg?w=826&t=st=1690722306~exp=1690722906~hmac=857df898b9099e272b7c4738dd9a2e88d4b1ef4aa3c55a6ebd3c8b798e20c916');background-repeat:no-repeat;
+background-position: center center;background-size: cover;">
 	<div class="label clientOrder">List Barang Keluar
-		<button id="myBtn">Add</button>
+		<button id="myBtn" style="width:100px;">+ Tambah</button>
 		<?php include('../include/modal_barangkeluar.php');?>
 	</div>
 	

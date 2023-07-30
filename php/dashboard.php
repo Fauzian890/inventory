@@ -6,18 +6,18 @@ include('../include/header.php'); ?>
 <?php include('../database/db.php'); ?>
 <link href="../css/dashboard.css" rel="stylesheet" type="text/css" />
 
-<body style="background:url('https://images.unsplash.com/photo-1524350876685-274059332603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');background-repeat:no-repeat;
+<body style="background:url('https://img.freepik.com/free-photo/right-corner-coffee-beans-with-copy-space_23-2148255026.jpg?w=826&t=st=1690722306~exp=1690722906~hmac=857df898b9099e272b7c4738dd9a2e88d4b1ef4aa3c55a6ebd3c8b798e20c916');background-repeat:no-repeat;
 background-position: center center;background-size: cover;"">
 	<div class="container">
 		<div class="row dashboard" style="background: none;">
-			<div class="col-sm-12 text-white font-weight-bold">DASHBOARD</div>
+			<div class="col-sm-12 text-black font-weight-bold">DASHBOARD</div>
 		</div>
 		<div class="row analytics">
 			<div class="col-sm-4">
 				<div class="card-group">
 					<div class="card">
 						<div class="card-body">
-							<img src="../img/1.png" class="col-sm-3" alt="" id="icon">
+							<img src="../img/kopi.png" class="col-sm-3" alt="" id="icon">
 							<?php
 							$sql = "SELECT * FROM kopi";
 							if ($result = mysqli_query($conn, $sql)) {
@@ -33,7 +33,7 @@ background-position: center center;background-size: cover;"">
 				<div class="card-group">
 					<div class="card">
 						<div class="card-body">
-							<img src="../img/3.png" class="col-sm-3" alt="" id="icon">
+							<img src="../img/supplier2.png" class="col-sm-3" alt="" id="icon">
 							<?php
 							$sqll = "SELECT * FROM supplier";
 							if ($Result = mysqli_query($conn, $sqll)) {
@@ -49,7 +49,7 @@ background-position: center center;background-size: cover;"">
 				<div class="card-group">
 					<div class="card">
 						<div class="card-body">
-							<img src="../img/2.png" class="col-sm-3" alt="" id="icon">
+							<img src="../img/konsumen.png" class="col-sm-3" alt="" id="icon">
 
 							<?php
 							$Sqll = "SELECT * FROM konsumen";
