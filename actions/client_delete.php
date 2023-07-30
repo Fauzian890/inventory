@@ -1,12 +1,12 @@
 <?php 
 include("../database/db.php");
 
-$users = $_GET['UserID'];
+$id_konsumen = $_GET['id_konsumen'];
 
-$sql = "DELETE FROM users WHERE UserID=$users" ;
+$sql = "DELETE FROM konsumen WHERE id_konsumen=$id_konsumen" ;
 
 if ($conn->query($sql) === TRUE) {
-  header('Location: ../php/kelolaAdmin.php');
+  header('Location: ../php/viewKonsumenPage.php');
 }
 
 
