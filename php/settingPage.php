@@ -17,13 +17,7 @@ background-position: center center;background-size: cover;">
 						<h1 id="settinglabel">Setting</h1>
 						<div class="usernamepass">
 							<div>
-								Username:<br> <label for="" id="username"><?php $sql="Select * FROM users";
-												$result = $conn->query($sql);?>
-												<?php if ($result->num_rows > 0): ?>
-													<?php while($row = $result->fetch_assoc()): ?>
-														<?php echo $row["UserName"];?>
-													<?php endwhile; ?>
-												<?php endif; ?></label>
+								Username:<br> <label for="" id="username"><?php echo $_SESSION["user"] ?></label>
 										
 							</div>
 								<div class="pass">

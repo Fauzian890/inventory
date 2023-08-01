@@ -38,7 +38,12 @@ background-position: center center;background-size: cover;">
 								<td><?php echo $row["nama_konsumen"]; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>		
 								<td><?php echo $row["qty"]; ?></td>		
-								<td><?php echo $row["tanggal_barangkeluar"]; ?></td>		
+								<td>
+									<?php
+										$dt = new DateTime($row["tanggal_barangkeluar"], new DateTimeZone('Asia/Jakarta'));
+										echo $dt->format('d/m/Y H:i');
+									?>
+								</td>		
 								<td>
 
 									<a onclick="return alert('Barang keluar berhasil dihapus');" href="../actions/barangkeluar_delete.php?id_barangkeluar=<?php echo $row["id_barangkeluar"]; ?>&qty=<?php echo $row["qty"]; ?>&id_kopi=<?php echo $row["id_kopi"]; ?>">
@@ -61,11 +66,21 @@ background-position: center center;background-size: cover;">
 					$('#clientOrder_list').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'print'
+            {
+            extend: 'print',
+            text: 'Cetak',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                },
+				columns: [ 0, 1, 2, 3, 4 ]
+            }
+        }
         ]
 		});
 			});
 	</script>
+	<script src="../include/modalscript.js"></script>
 
 <?php include('../include/modalscript_orderClient.php');?>
 </html>

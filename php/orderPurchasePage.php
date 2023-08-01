@@ -52,7 +52,12 @@ background-position: center center;background-size: cover;">
 								<td><?php echo $row["nama_supplier"]; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>		
 								<td><?php echo $row["qty"]; ?></td>		
-								<td><?php echo $row["tanggal_barangmasuk"]; ?></td>	
+								<td>
+									<?php
+										$dt = new DateTime($row["tanggal_barangmasuk"], new DateTimeZone('Asia/Jakarta'));
+										echo $dt->format('d/m/Y H:i');
+									?>
+								</td>	
 								<td><?php echo $row["status"]; ?></td>	
 								<td>
 									<?php if ($row["status"] != 'DISETUJUI') {?>
@@ -77,7 +82,16 @@ background-position: center center;background-size: cover;">
 					$('#purchaseOrder_list').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'print'
+            {
+            extend: 'print',
+            text: 'Cetak',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                },
+				columns: [ 0, 1, 2, 3, 4, 5 ]
+            }
+        }
         ]
 		});
 			});
