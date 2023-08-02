@@ -17,7 +17,7 @@ background-position: center center;background-size: cover;">
 					<th>Kategori</th>
 					<th>Deskripsi</th>
 					<th>Harga</th>	
-					<th>stok</th>
+					<th>stok/kg</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -59,10 +59,23 @@ background-position: center center;background-size: cover;">
 					?>
 				</tbody>
 		</table>
-		
 	<script>
 			$(document).ready( function () {
-					$('#product_list').DataTable();
+					$('#product_list').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+            extend: 'print',
+            text: 'Cetak',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                },
+				columns: [ 0, 1, 2, 3, 4, 5 ]
+            }
+        }
+        ]
+		});
 			});
 	</script>
 	<script src="../include/modalscript.js"></script>
