@@ -32,7 +32,8 @@ background-position: center center;background-size: cover;">
 					$result = $conn->query($sql);
 				?>
 			<?php if ($result->num_rows > 0): ?>
-				<?php while($row = $result->fetch_assoc()): ?>
+				<?php while($row = $result->fetch_assoc()): 
+						$data[] = $row; ?>
 						<tr>
 								<td><?php echo $row["id_barangkeluar"]; ?></td>
 								<td><?php echo $row["nama_konsumen"]; ?></td>
@@ -68,6 +69,34 @@ background-position: center center;background-size: cover;">
         buttons: [
             {
             extend: 'print',
+			customize: function ( win ) {
+ 
+                    $(win.document.body).find( 'table' )
+                        .append( `
+			<tfoot>
+				<tr><th colspan='3'></th><th colspan='2' style='text-align:center;'>Total Barang Keluar</th></tr>
+				<tr><th colspan='3'></th><th>Nama</th><th>Quantity</th></tr>
+			<?php 
+$totals = array();
+			foreach ($data as $d) {
+				$namakopi = $d["namakopi"];
+				$qty = $d["qty"];
+
+				if (isset($totals[$namakopi])) {
+					$totals[$namakopi] += $qty;
+				} else {
+					$totals[$namakopi] = $qty;
+				}
+			};
+			foreach ($totals as $namakopi => $total_qty) { ?>
+				<tr>
+					<td colspan='3'></td>
+					<td><?php echo $namakopi ?></td>
+					<td><?php echo $total_qty ?></td>
+				</tr>
+				<?php } ?>
+			</tfoot>` )
+                },
             text: 'Cetak',
             exportOptions: {
                 modifier: {
