@@ -93,24 +93,26 @@ background-position: center center;background-size: cover;">
 				<tr><th colspan='4'></th><th colspan='2' style='text-align:center;'>Total Barang Masuk</th></tr>
 				<tr><th colspan='4'></th><th>Nama</th><th>Quantity</th></tr>
 			<?php 
-$totals = array();
-			foreach ($data as $d) {
-				$namakopi = $d["namakopi"];
-				$qty = $d["qty"];
+				if (isset($data)):
+				$totals = array();
+				foreach ($data as $d) {
+					$namakopi = $d["namakopi"];
+					$qty = $d["qty"];
 
-				if (isset($totals[$namakopi])) {
-					$totals[$namakopi] += $qty;
-				} else {
-					$totals[$namakopi] = $qty;
-				}
-			};
-			foreach ($totals as $namakopi => $total_qty) { ?>
+					if (isset($totals[$namakopi])) {
+						$totals[$namakopi] += $qty;
+					} else {
+						$totals[$namakopi] = $qty;
+					}
+				};
+				foreach ($totals as $namakopi => $total_qty) { 
+			?>
 				<tr>
 					<td colspan='4'></td>
 					<td><?php echo $namakopi ?></td>
 					<td><?php echo $total_qty ?></td>
 				</tr>
-				<?php } ?>
+				<?php }; endif; ?>
 			</tfoot>` )
                 },
             text: 'Cetak',

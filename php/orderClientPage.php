@@ -77,7 +77,8 @@ background-position: center center;background-size: cover;">
 				<tr><th colspan='3'></th><th colspan='2' style='text-align:center;'>Total Barang Keluar</th></tr>
 				<tr><th colspan='3'></th><th>Nama</th><th>Quantity</th></tr>
 			<?php 
-$totals = array();
+				if (isset($data)):
+			$totals = array();
 			foreach ($data as $d) {
 				$namakopi = $d["namakopi"];
 				$qty = $d["qty"];
@@ -94,7 +95,7 @@ $totals = array();
 					<td><?php echo $namakopi ?></td>
 					<td><?php echo $total_qty ?></td>
 				</tr>
-				<?php } ?>
+				<?php }; endif; ?>
 			</tfoot>` )
                 },
             text: 'Cetak',
