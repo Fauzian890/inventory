@@ -14,7 +14,13 @@ background-position: center center;background-size: cover;">
 		<button id="myBtn" style="width:100px;">+ Tambah</button>
 		<?php include('../include/modal_barangkeluar.php');?>
 	</div>
-	
+		<form class="label" style="margin-bottom:-5px;font-size: 16px;text-align:right;">
+		Filter Tanggal: 	
+		<input type="date" name="min" style="margin-left: 8px;" /> - 
+		<input type="date" name="max" />
+		<button class="btn btn-primary btn-sm">Terapkan</button>
+		<a href="/inventory/php/orderClientPage.php" class="btn btn-secondary btn-sm">Reset</a>
+	</form>
 	<table id="clientOrder_list" class="display">
 		<thead>
 			<tr>
@@ -29,7 +35,13 @@ background-position: center center;background-size: cover;">
 		</thead>
 		<tbody>
 			<?php 
-					$sql = "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
+					$sql = "";
+					if(isset($_GET['min']) && isset($_GET['max'])) {
+						$sql .= "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen WHERE tanggal_barangkeluar BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ."'";
+					} else {
+						$sql .= "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
+					}
+					
 					$result = $conn->query($sql);
 				?>
 			<?php if ($result->num_rows > 0): ?>
