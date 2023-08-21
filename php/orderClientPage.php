@@ -19,6 +19,7 @@ background-position: center center;background-size: cover;">
 		<thead>
 			<tr>
 				<th>Id</th>
+				<th>Admin</th>
 				<th>Konsumen</th>
 				<th>Nama Kopi</th>
 				<th>Quantity</th>
@@ -28,7 +29,7 @@ background-position: center center;background-size: cover;">
 		</thead>
 		<tbody>
 			<?php 
-					$sql = "SELECT * FROM barangkeluar JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
+					$sql = "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
 					$result = $conn->query($sql);
 				?>
 			<?php if ($result->num_rows > 0): ?>
@@ -36,6 +37,7 @@ background-position: center center;background-size: cover;">
 						$data[] = $row; ?>
 						<tr>
 								<td><?php echo $row["id_barangkeluar"]; ?></td>
+								<td><?php echo $row["UserName"]; ?></td>
 								<td><?php echo $row["nama_konsumen"]; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>		
 								<td><?php echo $row["qty"]; ?></td>		

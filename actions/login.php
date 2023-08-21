@@ -13,12 +13,14 @@ if ($result->num_rows > 0) {
    $unamefromdb =  $row["UserName"];
    $pwordfromdb =  $row["UserPassword"];
    $role = $row['role'];
+   $UserID = $row['UserID'];
 
    if($unamefromdb == $uname){
       if($pwordfromdb == $pword){
         session_start();
         $_SESSION["user"] = $unamefromdb;
         $_SESSION["role"] = $role;
+        $_SESSION["UserID"] = $UserID;
         header('Location: ../php/dashboard.php');
       }
       else{

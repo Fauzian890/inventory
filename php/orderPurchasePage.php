@@ -26,6 +26,7 @@ background-position: center center;background-size: cover;">
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Admin</th>
 					<th>Supplier</th>
 					<th>Nama Kopi</th>
 					<th>Quantity</th>
@@ -38,9 +39,9 @@ background-position: center center;background-size: cover;">
 				<?php 
 					$sql = "";
 					if(isset($_GET['min']) && isset($_GET['max'])) {
-						$sql .= "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier WHERE tanggal_barangmasuk BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ."'";
+						$sql .= "SELECT * FROM barangmasuk JOIN users ON barangmasuk.UserID=users.UserID JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier WHERE tanggal_barangmasuk BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ."'";
 					} else {
-						$sql .= "SELECT * FROM barangmasuk JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier";
+						$sql .= "SELECT * FROM barangmasuk JOIN users ON barangmasuk.UserID=users.UserID JOIN kopi ON barangmasuk.id_kopi=kopi.id_kopi JOIN supplier ON barangmasuk.id_supplier=supplier.id_supplier";
 					}
 					
 					$result = $conn->query($sql);
@@ -50,6 +51,7 @@ background-position: center center;background-size: cover;">
    $data[] = $row; ?>
 							<tr>
 								<td><?php echo $row["id_barangmasuk"]; ?></td>
+								<td><?php echo $row["UserName"]; ?></td>
 								<td><?php echo $row["nama_supplier"]; ?></td>
 								<td><?php echo $row["namakopi"]; ?></td>		
 								<td><?php echo $row["qty"]; ?></td>		

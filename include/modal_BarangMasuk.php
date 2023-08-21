@@ -9,6 +9,7 @@
 			
             
 			<div class="form-group">
+				<input type="hidden" name="UserID" id="UserID" value="<?php echo $_SESSION['UserID'] ?>"></input>
 				<select class="form-select mb-2" id='supplier' name='supplier' required>
 					<?php 
 						$sql = "SELECT * FROM supplier"; //get all kateegori
