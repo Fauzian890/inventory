@@ -47,7 +47,7 @@ background-position: center center;background-size: cover;">
 									</a>
                                     <?php } ?>
                                     <?php if ($row["status"] == "DISETUJUI") {?>
-                                    <a onclick="return alert('Barang masuk berhasil dihapus');" href="../actions/barangmasuk_delete.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>">
+                                    <a onclick="return alert('Barang masuk berhasil dihapus');" href="../actions/validasibarangmasuk_delete.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>&qty=<?php echo $row["qty"]; ?>&kopi=<?php echo $row["id_kopi"]; ?>">
 										<button class="action delete" href="">Delete</button>
 									</a>
                                     <?php } ?>
