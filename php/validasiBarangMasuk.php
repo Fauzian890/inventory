@@ -46,6 +46,11 @@ background-position: center center;background-size: cover;">
 										<button class="btn btn-danger" href="">Tolak</button>
 									</a>
                                     <?php } ?>
+                                    <?php if ($row["status"] == "DISETUJUI") {?>
+                                    <a onclick="return alert('Barang masuk berhasil dihapus');" href="../actions/barangmasuk_delete.php?id_barangmasuk=<?php echo $row["id_barangmasuk"]; ?>">
+										<button class="action delete" href="">Delete</button>
+									</a>
+                                    <?php } ?>
 								</td>
 							</tr>
 		
