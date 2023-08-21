@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 06:21 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Aug 21, 2023 at 05:55 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barangkeluar` (
   `id_barangkeluar` int(11) NOT NULL,
+  `UserID` int(10) DEFAULT NULL,
   `id_kopi` int(11) NOT NULL,
   `id_konsumen` int(11) DEFAULT NULL,
   `qty` int(11) NOT NULL,
   `tanggal_barangkeluar` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barangkeluar`
+--
+
+INSERT INTO `barangkeluar` (`id_barangkeluar`, `UserID`, `id_kopi`, `id_konsumen`, `qty`, `tanggal_barangkeluar`) VALUES
+(16, 1, 14, 4, 12, '2023-08-21 10:52:46');
 
 -- --------------------------------------------------------
 
@@ -43,12 +51,20 @@ CREATE TABLE `barangkeluar` (
 
 CREATE TABLE `barangmasuk` (
   `id_barangmasuk` int(11) NOT NULL,
+  `UserID` int(10) DEFAULT NULL,
   `id_kopi` int(11) NOT NULL,
   `id_supplier` int(11) DEFAULT NULL,
   `tanggal_barangmasuk` datetime NOT NULL DEFAULT current_timestamp(),
   `qty` int(11) NOT NULL,
   `status` enum('DIPROSES','DISETUJUI','DITOLAK','') NOT NULL DEFAULT 'DIPROSES'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barangmasuk`
+--
+
+INSERT INTO `barangmasuk` (`id_barangmasuk`, `UserID`, `id_kopi`, `id_supplier`, `tanggal_barangmasuk`, `qty`, `status`) VALUES
+(20, 1, 14, 6, '2023-08-21 10:47:34', 12, 'DIPROSES');
 
 -- --------------------------------------------------------
 
@@ -59,7 +75,7 @@ CREATE TABLE `barangmasuk` (
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_kategori` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
@@ -79,7 +95,7 @@ CREATE TABLE `konsumen` (
   `id_konsumen` int(11) NOT NULL,
   `nama_konsumen` varchar(25) NOT NULL,
   `alamat_konsumen` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `konsumen`
@@ -104,14 +120,14 @@ CREATE TABLE `kopi` (
   `deskripsi` varchar(25) NOT NULL,
   `stok` int(11) NOT NULL,
   `harga` bigint(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kopi`
 --
 
 INSERT INTO `kopi` (`id_kopi`, `id_kategori`, `namakopi`, `deskripsi`, `stok`, `harga`) VALUES
-(14, 7, 'Luak', ' Biji kopi luak adalah bi', 1, 187500),
+(14, 7, 'Luak', ' Biji kopi luak adalah bi', -11, 187500),
 (15, 8, 'Robusta', 'Kopi robusta adalah salah', 1, 200000),
 (16, 8, 'Arabika', ' Kopi arabika adalah sala', 1, 200000),
 (17, 7, 'Gayo', 'Kopi Gayo adalah jenis ko', 1, 175000),
@@ -130,7 +146,7 @@ CREATE TABLE `supplier` (
   `nama_supplier` varchar(25) NOT NULL,
   `alamat_supplier` varchar(25) NOT NULL,
   `no_hp` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `supplier`
@@ -152,14 +168,14 @@ CREATE TABLE `users` (
   `UserName` varchar(50) NOT NULL,
   `UserPassword` varchar(50) NOT NULL,
   `role` enum('admin','pemilik','','') NOT NULL DEFAULT 'admin'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`, `role`) VALUES
-(1, 'admin', 'admin', 'admin'),
+(1, 'admin1', 'admin', 'admin'),
 (2, 'admin2', 'admin222', 'admin'),
 (3, 'emon', '1234', 'pemilik');
 
@@ -173,7 +189,8 @@ INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`, `role`) VALUES
 ALTER TABLE `barangkeluar`
   ADD PRIMARY KEY (`id_barangkeluar`),
   ADD KEY `id_kopi` (`id_kopi`),
-  ADD KEY `id_konsumen` (`id_konsumen`);
+  ADD KEY `id_konsumen` (`id_konsumen`),
+  ADD KEY `bk_fk4` (`UserID`);
 
 --
 -- Indexes for table `barangmasuk`
@@ -181,7 +198,8 @@ ALTER TABLE `barangkeluar`
 ALTER TABLE `barangmasuk`
   ADD PRIMARY KEY (`id_barangmasuk`),
   ADD KEY `id_kopi` (`id_kopi`),
-  ADD KEY `id_supplier` (`id_supplier`);
+  ADD KEY `id_supplier` (`id_supplier`),
+  ADD KEY `bm_fk4` (`UserID`);
 
 --
 -- Indexes for table `kategori`
@@ -222,13 +240,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangkeluar`
 --
 ALTER TABLE `barangkeluar`
-  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `barangmasuk`
 --
 ALTER TABLE `barangmasuk`
-  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -269,14 +287,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `barangkeluar`
   ADD CONSTRAINT `bk_fk2` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `bk_fk3` FOREIGN KEY (`id_kopi`) REFERENCES `kopi` (`id_kopi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bk_fk3` FOREIGN KEY (`id_kopi`) REFERENCES `kopi` (`id_kopi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_fk4` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `barangmasuk`
 --
 ALTER TABLE `barangmasuk`
   ADD CONSTRAINT `bm_fk2` FOREIGN KEY (`id_kopi`) REFERENCES `kopi` (`id_kopi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bm_fk3` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `bm_fk3` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `bm_fk4` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kopi`
