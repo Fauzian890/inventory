@@ -16,8 +16,8 @@ background-position: center center;background-size: cover;">
 	</div>
 		<form class="label" style="margin-bottom:-5px;font-size: 16px;text-align:right;">
 		Filter Tanggal: 	
-		<input type="date" name="min" style="margin-left: 8px;" /> - 
-		<input type="date" name="max" />
+		<input id="min" type="date" name="min" style="margin-left: 8px;" /> - 
+		<input id="max" type="date" name="max" />
 		<button class="btn btn-primary btn-sm">Terapkan</button>
 		<a href="/inventory/php/orderClientPage.php" class="btn btn-secondary btn-sm">Reset</a>
 	</form>
@@ -37,7 +37,7 @@ background-position: center center;background-size: cover;">
 			<?php 
 					$sql = "";
 					if(isset($_GET['min']) && isset($_GET['max'])) {
-						$sql .= "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen WHERE tanggal_barangkeluar BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ."'";
+						$sql .= "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen WHERE tanggal_barangkeluar BETWEEN '" . $_GET['min'] . "' AND '" . $_GET['max'] ." 23:59:59.993'";
 					} else {
 						$sql .= "SELECT * FROM barangkeluar JOIN users ON barangkeluar.UserID=users.UserID JOIN kopi ON barangkeluar.id_kopi=kopi.id_kopi JOIN konsumen ON barangkeluar.id_konsumen=konsumen.id_konsumen";
 					}
@@ -78,6 +78,22 @@ background-position: center center;background-size: cover;">
 
 <script>
 			$(document).ready( function () {
+var urlParams = new URLSearchParams(window.location.search);
+    
+    // Cek apakah parameter "min" ada dalam URL
+    if (urlParams.has("min")) {
+        var minDate = urlParams.get("min");
+        // Set nilai input tanggal (min) dengan nilai dari parameter "min"
+        $("#min").val(minDate);
+    }
+    
+    // Cek apakah parameter "max" ada dalam URL
+    if (urlParams.has("max")) {
+        var maxDate = urlParams.get("max");
+        // Set nilai input tanggal (max) dengan nilai dari parameter "max"
+        $("#max").val(maxDate);
+    }
+
 					$('#clientOrder_list').DataTable({
         dom: 'Bfrtip',
         buttons: [

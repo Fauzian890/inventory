@@ -14,9 +14,8 @@
 				<input type="text" name="alamat_supplier"class="form-control"  placeholder="Alamat Supplier">
 			</div>
 			<div class="form-group">
-				<input type="text" name="no_hp"class="form-control"  placeholder="Nomor HP">
+				<input type="text" name="no_hp" class="form-control"  placeholder="Nomor HP">
 			</div>
-			
 			<div class="form-group">
 				<button type="submit" name="submit" class="btn btn-primary">Add</button>
 			</div>

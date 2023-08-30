@@ -3,6 +3,17 @@
 
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 
+<style>
+	
+
+
+.error {
+	color: red;
+	background: white;
+	text-align: center;
+}
+</style>
+
 <body style="background:url('img/bg.jpg');background-repeat:no-repeat;
 background-position: center center;background-size: cover;">
 	<div class="container-fluid">
@@ -23,6 +34,9 @@ background-position: center center;background-size: cover;">
 					<form action="actions/login.php" method="post">
 						<input name="uname" type="text" class="field" placeholder="USERNAME"><br>
 						<input name="pword" type="password" class="field" placeholder="PASSWORD"><br>
+					<?php if (isset($_GET["error"])) { ?>
+    <div class="error"><?php echo $_GET["error"]; ?></div>
+ <?php } ?>
 						<div class="col text-center">
 							<button class="btn btn-default" id="login_btn">LOGIN</button>
 						</div>

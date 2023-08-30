@@ -24,11 +24,11 @@ if ($result->num_rows > 0) {
         header('Location: ../php/dashboard.php');
       }
       else{
-        header('Location: ../index.php');
+        header('Location: ../index.php?error=Password%20salah');
       }
     }
    else{
-    header('Location: ../index.php');
+    header('Location: ../index.php?error=User%20tidak%20ditemukan');
 
    }
     
